@@ -1,0 +1,9 @@
+channels:
+- conda-forge
+dependencies:
+- python =3.12
+- networkx 
+- rich
+- pip
+- pip:
+  - git+https://gitlab.com/asm-dtu/perqueue.git
