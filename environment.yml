@@ -3,6 +3,7 @@ channels:
 dependencies:
 - python =3.12
 - networkx 
+- myqueue
 - rich
 - pip
 - pip:
