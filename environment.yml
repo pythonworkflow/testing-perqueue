@@ -6,7 +6,6 @@ dependencies:
 - rich =15.0.0
 - texteditor =1.4.1
 - pip =25.2
-- matplotlib =3.10.9
 - ase=3.24.0
 - matplotlib=3.10.1
 - xmlschema=3.4.3
