@@ -10,6 +10,17 @@ from optimade.adapters.structures.ase import from_ase_atoms, get_ase_atoms
 from optimade.models.structures import StructureResourceAttributes, StructureResource
 
 
+def fix(f):
+    def fm(*args, **kwargs):
+        result = f(*args, **kwargs)
+        if isinstance(result, dict):
+            return True, result
+        else:
+            return True, {"data": result}
+
+    return fm
+
+
 def write_input(input_dict, working_directory="."):
     filename = os.path.join(working_directory, "input.pwi")
     os.makedirs(working_directory, exist_ok=True)
@@ -38,6 +49,7 @@ def collect_output(working_directory="."):
     }
 
 
+@fix
 def calculate_qe(working_directory, input_dict):
     write_input(
         input_dict=input_dict,
@@ -51,6 +63,7 @@ def calculate_qe(working_directory, input_dict):
     return collect_output(working_directory=working_directory)
 
 
+@fix
 def generate_structures(structure, strain_lst):
     structure_lst = []
     for strain in strain_lst:
@@ -62,6 +75,7 @@ def generate_structures(structure, strain_lst):
     return {f"s_{i}": ase_to_json(atoms=s) for i, s in enumerate(structure_lst)}
 
 
+@fix
 def plot_energy_volume_curve(volume_lst, energy_lst):
     plt.plot(volume_lst, energy_lst)
     plt.xlabel("Volume")
@@ -69,6 +83,7 @@ def plot_energy_volume_curve(volume_lst, energy_lst):
     plt.savefig("evcurve.png")
 
 
+@fix
 def get_bulk_structure(element, a, cubic):
     ase_atoms = bulk(
         name=element,
