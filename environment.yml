@@ -2,9 +2,16 @@ channels:
 - conda-forge
 dependencies:
 - python =3.12
-- myqueue
-- rich
-- pip
-- matplotlib
+- myqueue =26.3.0
+- rich =15.0.0
+- texteditor =1.4.1
+- pip =25.2
+- ase=3.24.0
+- matplotlib=3.10.1
+- xmlschema=3.4.3
+- optimade=1.2.3
+- qe=7.5
+- qe-tools=2.0.0
+- conda_subprocess =0.0.11
 - pip:
   - git+https://gitlab.com/asm-dtu/perqueue.git
